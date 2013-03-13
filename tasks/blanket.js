@@ -8,16 +8,14 @@
 
 'use strict';
 
-var blkt = require("blanket");
-
 module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
   grunt.registerMultiTask('blanket', 'Instrument files with Blanket.js', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    
+    var blkt = require("blanket");
+    // Merge task-specific and/or target-specific options with these defaults.    
     var options = this.options();
     blkt.options({ "data-cover-flags": options} );
 
