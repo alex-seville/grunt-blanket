@@ -1,6 +1,6 @@
 # grunt-blanket
 
-> Instruments files with Blanket.js in the "traditional" manner of creating physical instrumented copies of the files.  Ideal for situations where you'd like to use mocha or browser based test coverage, but don't want to have to use a non-JS solution to instrument your files.
+> Instruments files with [Blanket.js](http://blanketjs.org) in the "traditional" manner of creating physical instrumented copies of the files.  Ideal for situations where you'd like to use mocha or browser based test coverage, but don't want to have to use a non-JS solution to instrument your files.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
