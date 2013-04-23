@@ -14,10 +14,10 @@ module.exports = function(grunt) {
   // creation: http://gruntjs.com/creating-tasks
 
   grunt.registerMultiTask('blanket', 'Instrument files with Blanket.js', function() {
-    var blkt = require("blanket");
+    
     // Merge task-specific and/or target-specific options with these defaults.    
     var options = this.options();
-    blkt.options({ "data-cover-flags": options} );
+    var blkt = require("blanket")({ "data-cover-flags": options});
 
     var done = this.async();
 
