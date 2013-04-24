@@ -18,7 +18,9 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('blanket', 'Instrument files with Blanket.js', function() {
     
     // Merge task-specific and/or target-specific options with these defaults.    
-    var options = this.options();
+    var options = this.options({
+      extensions: ['.js']
+    });
     var blkt = require("blanket")({ "data-cover-flags": options});
 
     var done = this.async();
@@ -37,16 +39,18 @@ module.exports = function(grunt) {
       });
       grunt.util.async.forEachSeries(src,function(filepath,next) {
         grunt.file.recurse(filepath, function(abspath, rootdir, subdir, filename){
-          // Read file source.
-          var inFile = grunt.file.read(abspath);
-          
-          blkt.instrument(
-            {
-              inputFile: inFile,
-              inputFileName: abspath
-            },function(instrumented){
-              grunt.file.write(path.join(f.dest,(subdir || ""),filename), instrumented);
+          if (options.extensions.indexOf(path.extname(filename)) > -1){
+            // Read file source.
+            var inFile = grunt.file.read(abspath);
+            
+            blkt.instrument(
+              {
+                inputFile: inFile,
+                inputFileName: abspath
+              },function(instrumented){
+                grunt.file.write(path.join(f.dest,(subdir || ""),filename), instrumented);
             });
+          }
         });
         next();
       },n);
