@@ -31,7 +31,7 @@ module.exports = function(grunt) {
           debug: true
         },
         files: {
-          'cov/': ['tasks/*.js'],
+          'cov/': ['tasks/'],
         },
       }
     },

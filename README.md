@@ -45,12 +45,14 @@ Only the data-cover-flags from Blanket are accepted as options.  They may add so
 #### Default Options
 In this example, our source files are contained in 'src' and we want them to be instrumented and then stored in 'src-cov'.
 
+NOTE: The src parameter MUST be a directory.  Patterns like "src/*.js" will fail.  Individual files can be included or excluded via the pattern option.
+
 ```js
 grunt.initConfig({
   blanket: {
     options: {},
     files: {
-      'src-cov/': ['src/*'],
+      'src-cov/': ['src/'],
     },
   },
 })

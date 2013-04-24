@@ -8,6 +8,8 @@
 
 'use strict';
 
+var path = require("path");
+
 module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
@@ -26,26 +28,27 @@ module.exports = function(grunt) {
       // Concat specified files.
       var src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
+        if (!grunt.file.exists(filepath) || !grunt.file.isDir(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found or is not a directory.');
           return false;
         } else {
           return true;
         }
       });
       grunt.util.async.forEachSeries(src,function(filepath,next) {
-        // Read file source.
-        var inFile = grunt.file.read(filepath);
-        
-        blkt.instrument(
-          {
-            inputFile: inFile,
-            inputFileName: filepath
-          },function(instrumented){
-            grunt.file.write(f.dest+filepath, instrumented);
-            next();
-          });
-        
+        grunt.file.recurse(filepath, function(abspath, rootdir, subdir, filename){
+          // Read file source.
+          var inFile = grunt.file.read(abspath);
+          
+          blkt.instrument(
+            {
+              inputFile: inFile,
+              inputFileName: abspath
+            },function(instrumented){
+              grunt.file.write(path.join(f.dest,(subdir || ""),filename), instrumented);
+            });
+        });
+        next();
       },n);
 
       // Print a success message.
