@@ -21,7 +21,10 @@ module.exports = function(grunt) {
     var options = this.options({
       extensions: ['.js']
     });
-    var blkt = require("blanket")({ "data-cover-flags": options});
+    var blkt = require("blanket")({
+      "data-cover-flags": options,
+      "data-cover-only": options["data-cover-only"] || options["pattern"] || "*"
+    });
 
     var done = this.async();
 
