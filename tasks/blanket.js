@@ -25,6 +25,8 @@ module.exports = function(grunt) {
       "data-cover-flags": options,
       "data-cover-only": options["data-cover-only"] || options["pattern"] || "*"
     });
+    //make sure we'e using the blanket loader (require statements are cached, so it might not be called each time)
+    blkt.restoreBlanketLoader();
 
     var done = this.async();
 
