@@ -60,7 +60,10 @@ module.exports = function(grunt) {
 
       // Print a success message.
       grunt.log.writeln('File instrumented.');
-    },done);
+    },function () {
+      blkt.restoreNormalLoader();
+      done();
+    });
     
   });
 

@@ -1,7 +1,7 @@
 {
   "name": "grunt-blanket",
   "description": "Instruments files with Blanket.js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "homepage": "https://github.com/alex-seville/grunt-blanket",
   "author": {
     "name": "alex-seville",
@@ -33,7 +33,7 @@
     }
   },
   "dependencies":{
-    "blanket": "1.1.2"
+    "blanket": "1.1.4"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
