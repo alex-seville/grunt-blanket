@@ -22,6 +22,7 @@ module.exports = function(grunt) {
       extensions: ['.js']
     });
     var blkt = require("blanket")({
+      "data-cover-customVariable": options['data-cover-customVariable'],
       "data-cover-flags": options,
       "data-cover-only": options["data-cover-only"] || options["pattern"] || "*"
     });
