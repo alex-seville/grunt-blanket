@@ -9,6 +9,7 @@
 'use strict';
 
 var path = require("path");
+var async = require("async");
 
 module.exports = function(grunt) {
 
@@ -32,7 +33,7 @@ module.exports = function(grunt) {
     var done = this.async();
 
     // Iterate over all specified file groups.
-    grunt.util.async.forEachSeries(this.files,function(f,n) {
+    async.eachSeries(this.files,function(f,n) {
       // Concat specified files.
       var src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
           return true;
         }
       });
-      grunt.util.async.forEachSeries(src,function(filepath,next) {
+      async.eachSeries(src,function(filepath,next) {
         grunt.file.recurse(filepath, function(abspath, rootdir, subdir, filename){
           if (options.extensions.indexOf(path.extname(filename)) > -1){
             // Read file source.
