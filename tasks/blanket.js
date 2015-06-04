@@ -45,7 +45,11 @@ module.exports = function(grunt) {
       });
       grunt.util.async.forEachSeries(src,function(filepath,next) {
         grunt.file.recurse(filepath, function(abspath, rootdir, subdir, filename){
-          if (options.extensions.indexOf(path.extname(filename)) > -1){
+          var matchesPattern = (options.pattern === undefined) ||
+                               (grunt.file.minimatch(abspath, options.pattern)),
+              matchesExtensions = options.extensions.indexOf(path.extname(filename)) > -1;
+
+          if (matchesPattern && matchesExtensions) {
             // Read file source.
             var inFile = grunt.file.read(abspath);
             

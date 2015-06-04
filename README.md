@@ -50,7 +50,10 @@ NOTE: The src parameter MUST be a directory.  Patterns like "src/*.js" will fail
 ```js
 grunt.initConfig({
   blanket: {
-    options: {},
+    options: {
+      // pattern: "**/*interesting*.js"
+      pattern: "!src/some/dir/to/exclude/**/*"
+    },
     files: {
       'src-cov/': ['src/'],
     },
