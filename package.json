@@ -25,18 +25,21 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test",
+    "test": "grunt test"
+  },
+  "config": {
     "blanket": {
       "data-cover-flags": {
-        "engineOnly":true
+        "engineOnly": true
       }
     }
   },
-  "dependencies":{
-    "blanket": "1.1.4"
+  "dependencies": {
+    "async": "~0.9.0",
+    "blanket": "~1.1.6"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-jshint": "~0.10.0",
     "grunt": "~0.4.0"
   },
   "peerDependencies": {
